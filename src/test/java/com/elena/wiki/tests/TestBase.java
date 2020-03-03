@@ -13,26 +13,28 @@ import java.util.Arrays;
 
 @Listeners(Listener.class)
 public class TestBase {
-  public static ApplicationManager app = new ApplicationManager();
-Logger logger = LoggerFactory.getLogger(TestBase.class);
-@BeforeMethod
-public void startTestLog(Method m, Object[] parameter){
-  logger.info("Start test " + m.getName()
-          + " with parameters " + Arrays.asList(parameter));
-}
+    public static ApplicationManager app = new ApplicationManager();
+    Logger logger = LoggerFactory.getLogger(TestBase.class);
 
-@AfterMethod
-public void stopTestLog(Method m){
-  logger.info("Stop test " + m.getName());
-}
-  @BeforeSuite
-  public void setUp() throws MalformedURLException {
-    app.init();
-  }
+    @BeforeMethod
+    public void startTestLog(Method m, Object[] parameter) {
+        logger.info("Start test " + m.getName()
+                + " with parameters " + Arrays.asList(parameter));
+    }
 
-  @AfterSuite
-  public void tearDown() throws InterruptedException {
-    app.stop();
-  }
+    @AfterMethod
+    public void stopTestLog(Method m) {
+        logger.info("Stop test " + m.getName());
+    }
+
+    @BeforeSuite
+    public void setUp() throws MalformedURLException {
+        app.init();
+    }
+
+    @AfterSuite
+    public void tearDown() throws InterruptedException {
+        app.stop();
+    }
 
 }
